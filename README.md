@@ -1,68 +1,125 @@
-# Time-Prototype Mamba
+<!-- Time-Prototype Mamba -->
+
+<div align="center">
+
+<h1>Time-Prototype Mamba</h1>
+
+<p><strong>Prototype-level temporal modeling for longitudinal volumetric imaging</strong></p>
+
+<p>
+  <img src="assets/tpm_hero.webp" alt="Time-Prototype Mamba overview" width="100%">
+</p>
+
+<p>
+  <a href="#citation"><img alt="Paper status" src="https://img.shields.io/badge/Paper-Under%20Review-f2c94c"></a>
+  <a href="https://www.python.org/"><img alt="Python" src="https://img.shields.io/badge/Python-3.10--3.12-3776ab"></a>
+  <a href="https://pytorch.org/"><img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-2.9-ee4c2c"></a>
+  <a href="https://monai.io/"><img alt="MONAI" src="https://img.shields.io/badge/MONAI-1.5-00a6d6"></a>
+  <a href="https://github.com/state-spaces/mamba"><img alt="Mamba-SSM" src="https://img.shields.io/badge/Mamba--SSM-2.3-6f42c1"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-2ea44f"></a>
+</p>
+
+</div>
+
+---
+
+## Overview
+
+**Time-Prototype Mamba (TPM)** is a compact research codebase for longitudinal volumetric imaging. It converts planning CT and serial follow-up scans into **prototype trajectories**, injects real acquisition timing, and uses a Mamba sequence block to predict a patient-level binary outcome.
+
+This repository contains the public TPM implementation, including the model architecture, manifest-based dataset interface, training/evaluation scripts, and generated synthetic data for smoke testing.
 
 > Manuscript status: under review.
 
-![Time-Prototype Mamba overview](assets/tpm_hero.webp)
+---
 
-**Time-Prototype Mamba (TPM)** is a compact research codebase for longitudinal volumetric imaging. It turns planning CT and serial follow-up scans into **prototype trajectories**, injects real acquisition timing, and uses a Mamba sequence block to predict a patient-level binary outcome.
+## At a Glance
 
-This repository contains the public implementation of TPM, including the core model, a manifest-based dataset interface, training/evaluation scripts, and a generated smoke-test dataset.
+| Component | Design |
+|---|---|
+| Volumetric encoder | MONAI 3D UNet shared by planning CT and longitudinal scans |
+| Regional abstraction | SLIC-style subregion pooling into learnable phenotype prototypes |
+| Time representation | Dual-clock embedding with days from reference scan and days from previous scan |
+| Sequence model | Strict Mamba encoder over prototype trajectories |
+| Readout | Flattened prototype-time tokens fused with reference CT context |
+| Test data | Generated synthetic longitudinal volumes for software validation |
 
-## Why TPM?
+```text
+planning CT + serial scans
+        |
+        v
+shared MONAI 3D UNet
+        |
+        v
+SLIC-style subregion features -> learnable prototypes
+        |
+        v
+dual-clock time embedding -> Mamba temporal encoder
+        |
+        v
+patient-level binary prediction + interpretability tensors
+```
 
-Longitudinal radiotherapy imaging is not just a stack of scans. It is a timed trajectory: anatomical subregions evolve at different rates, scans are acquired at irregular intervals, and the clinically useful signal may be local rather than global.
+---
 
-TPM models that trajectory in four steps:
+## Highlights
 
-1. **Shared 3D encoder** extracts volumetric features from planning CT and serial scans.
-2. **Subregion-to-prototype pooling** compresses variable SLIC-style regions into a fixed set of learnable phenotype prototypes.
-3. **Dual-clock time embedding** injects both days from the reference scan and days from the previous scan.
-4. **Mamba temporal modeling** encodes prototype trajectories before patient-level classification.
+- **Paper-aligned architecture**: the public TPM path uses `temporal_backend: mamba` and `strict_mamba: true`.
+- **Prototype trajectories**: variable-count subregions are summarized into a fixed prototype bank for interpretable temporal modeling.
+- **Real scan timing**: both absolute and interval day features are injected into the prototype sequence.
+- **Manifest-first interface**: users can connect their own approved datasets without changing the model code.
+- **Runnable smoke test**: a generated synthetic dataset is included to validate installation, training, checkpointing, and evaluation.
 
-The same forward pass can also return interpretability tensors: prototype assignments, time gates, temporal tokens, and region-time attention weights.
+---
 
 ## Repository Layout
 
 ```text
 time-prototype-mamba/
+  assets/
+    tpm_hero.webp
   configs/
-    tpm_synthetic.yaml       # small runnable smoke-test config
+    tpm_synthetic.yaml       # runnable smoke-test config
     tpm_full_template.yaml   # template for user-provided datasets
+  data/
+    synthetic/               # generated example arrays and manifests
   examples/
     make_synthetic_dataset.py
     train_synthetic.py
     evaluate_checkpoint.py
-  time_prototype_mamba/
-    data/                    # manifest dataset and synthetic generator
-    models/                  # encoder, prototype, temporal, TPM model
-    training/                # losses, metrics, train/evaluate helpers
-    utils/                   # reproducibility utilities
   tests/
     test_smoke.py
+  time_prototype_mamba/
+    data/                    # manifest dataset and synthetic generator
+    models/                  # MONAI encoder, prototypes, Mamba, TPM model
+    training/                # losses, metrics, train/evaluate helpers
+    utils/                   # reproducibility utilities
 ```
+
+---
 
 ## Installation
 
 TPM targets Python 3.10-3.12 with a CUDA-enabled PyTorch stack compatible with Mamba-SSM. The smoke tests were verified with Python 3.12, PyTorch 2.9.1, MONAI 1.5.2, and Mamba-SSM 2.3.2.
 
-Create your environment from this folder:
+Create the environment from this folder:
 
 ```bash
 uv sync --extra dev
 ```
 
-The install uses PyTorch, MONAI, Mamba-SSM, NumPy, PyYAML, and scikit-learn.
-
-The synthetic smoke config and the full template both use the paper-aligned Mamba backend:
+The default configs use the paper-aligned Mamba backend:
 
 ```yaml
 temporal_backend: mamba
 strict_mamba: true
 ```
 
+---
+
 ## Quickstart
 
-Generate a tiny synthetic longitudinal dataset:
+Generate the synthetic longitudinal dataset:
 
 ```bash
 uv run python examples/make_synthetic_dataset.py --out data/synthetic --num-samples 24
@@ -95,7 +152,9 @@ outputs/synthetic_smoke/
     final.pt
 ```
 
-## Data Format
+---
+
+## Data Interface
 
 TPM uses a JSON manifest plus `.npz` arrays. A minimal record looks like this:
 
@@ -121,9 +180,13 @@ Expected array keys and shapes:
 
 Labels are binary and use `1` as the positive class for `BCEWithLogitsLoss`. If your study uses the opposite convention, remap labels before writing the manifest.
 
+---
+
 ## Data Availability
 
 This repository includes generated synthetic data for software testing and example execution. The data that support the findings of the accompanying study are not publicly available because they contain sensitive patient information. Deidentified data may be made available by the corresponding authors upon reasonable request and subject to approval by the participating institutions and ethics committees after peer review.
+
+---
 
 ## Training Objective
 
@@ -132,18 +195,15 @@ The public training loop uses:
 ```text
 L = L_BCE
   + lambda_cluster * L_cluster
-  + lambda_diversity * L_diversity
   + lambda_contrast * L_temporal_contrast
   + lambda_temporal_smooth * L_gap_smoothness
 ```
 
-`L_cluster` and `L_diversity` regularize the prototype bank. `L_temporal_contrast` encourages the same prototype to remain comparable between adjacent valid visits and supports class-dependent weights matching the manuscript configuration. `L_gap_smoothness` penalizes short-interval prototype jumps more strongly than long-interval changes.
+`L_cluster` regularizes the prototype bank. `L_temporal_contrast` encourages the same prototype to remain comparable between adjacent valid visits and supports class-dependent weights matching the manuscript configuration. `L_gap_smoothness` penalizes short-interval prototype jumps more strongly than long-interval changes.
 
-## Reproducibility Notes
+The implementation also exposes an optional prototype diversity term, `lambda_diversity * L_diversity`, for studies that need stronger prototype-bank separation. It is disabled in the provided default configs.
 
-The utilities seed Python, NumPy, PyTorch CPU/CUDA, DataLoader workers, cuDNN flags, TF32 flags, and optional cuBLAS workspace configuration. Saved checkpoints and prediction files can be re-evaluated directly.
-
-GPU sequence kernels can still differ across hardware and dependency versions. For paper-grade experiments, keep the resolved config, manifests, metrics log, checkpoint hashes, hardware information, and repeated-run spread instead of relying on `seed` alone.
+---
 
 ## Programmatic Use
 
@@ -176,6 +236,16 @@ logits = out["logits"]
 attention = out["region_time_attention"]
 prototype_tokens = out["temporal_tokens"]
 ```
+
+---
+
+## Reproducibility Notes
+
+The utilities seed Python, NumPy, PyTorch CPU/CUDA, DataLoader workers, cuDNN flags, TF32 flags, and optional cuBLAS workspace configuration. Saved checkpoints and prediction files can be re-evaluated directly.
+
+GPU sequence kernels can still differ across hardware and dependency versions. For paper-grade experiments, keep the resolved config, manifests, metrics log, checkpoint hashes, hardware information, and repeated-run spread instead of relying on `seed` alone.
+
+---
 
 ## Citation
 
