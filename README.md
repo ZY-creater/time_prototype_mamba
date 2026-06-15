@@ -1,10 +1,3 @@
-<!-- Time-Prototype Mamba -->
-
-<div align="center">
-
-<h1>Time-Prototype Mamba</h1>
-
-<p><strong>Prototype-level temporal modeling for longitudinal volumetric imaging</strong></p>
 
 <p>
   <img src="assets/tpm_hero.webp" alt="Time-Prototype Mamba overview" width="100%">
