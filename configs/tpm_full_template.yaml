@@ -1,0 +1,66 @@
+project_root: .
+seed: 42
+
+data:
+  train_manifest: data/train_manifest.json
+  val_manifest: data/val_manifest.json
+  max_timepoints: 8
+  fixed_spatial_shape_zyx: [116, 256, 212]
+  spatial_size_multiple: 4
+
+model:
+  in_channels: 1
+  encoder_backend: monai_unet
+  unet_features: [8, 16, 32]
+  unet_dropout: 0.0
+  num_prototypes: 24
+  pooling_mode: flatten_tokens
+  classifier_depth: 3
+  classifier_max_timepoints: 8
+  mlp_hidden: 256
+  mlp_dropout: 0.15
+  use_time_delta: true
+  time_embedding_mode: dual_clock
+  time_delta_source: from_prev_cbct
+  time_delta_scale: 30.0
+  time_residual_init: 0.05
+  mask_padding_before_temporal: true
+  ct_encoder_chunk_size: 4
+  cbct_encoder_chunk_size: 4
+  encode_valid_timepoints_only: true
+  temporal_backend: mamba
+  strict_mamba: true
+  mamba_use_fast_path: true
+
+training:
+  output_dir: outputs/tpm_full_template
+  epochs: 90
+  eval_every: 3
+  save_eval_checkpoints: true
+  batch_size: 3
+  num_workers: 0
+  lr: 0.0001
+  weight_decay: 0.0005
+  grad_clip_norm: 1.0
+  accumulate_grad_batches: 2
+  amp: true
+  amp_dtype: bfloat16
+  lambda_cluster: 0.00003
+  lambda_diversity: 0.0
+  lambda_contrast: 0.005
+  tau_contrast: 0.1
+  contrast_negative_class_weight: 0.5
+  contrast_positive_class_weight: 1.5
+  lambda_temporal_smooth: 0.0003
+  temporal_smooth_tau_days: 7.0
+  warmup_epochs: 5
+  fail_on_nonfinite: true
+
+reproducibility:
+  deterministic: true
+  deterministic_warn_only: true
+  cudnn_benchmark: false
+  cudnn_deterministic: true
+  allow_tf32: false
+  float32_matmul_precision: highest
+  cublas_workspace_config: ":4096:8"

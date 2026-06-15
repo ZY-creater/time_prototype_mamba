@@ -1,0 +1,326 @@
+[
+  {
+    "case_id": "synthetic_014",
+    "label": 0,
+    "ct": "arrays/synthetic_014_ct.npz",
+    "cbct": "arrays/synthetic_014_cbct.npz",
+    "slic": "arrays/synthetic_014_slic.npz",
+    "cbct_days_from_ct": [
+      5.0,
+      11.0,
+      13.0,
+      18.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      5.0,
+      6.0,
+      2.0,
+      5.0
+    ]
+  },
+  {
+    "case_id": "synthetic_007",
+    "label": 1,
+    "ct": "arrays/synthetic_007_ct.npz",
+    "cbct": "arrays/synthetic_007_cbct.npz",
+    "slic": "arrays/synthetic_007_slic.npz",
+    "cbct_days_from_ct": [
+      4.0,
+      10.0,
+      13.0,
+      16.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      4.0,
+      6.0,
+      3.0,
+      3.0
+    ]
+  },
+  {
+    "case_id": "synthetic_020",
+    "label": 0,
+    "ct": "arrays/synthetic_020_ct.npz",
+    "cbct": "arrays/synthetic_020_cbct.npz",
+    "slic": "arrays/synthetic_020_slic.npz",
+    "cbct_days_from_ct": [
+      4.0,
+      9.0,
+      15.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      4.0,
+      5.0,
+      6.0
+    ]
+  },
+  {
+    "case_id": "synthetic_003",
+    "label": 1,
+    "ct": "arrays/synthetic_003_ct.npz",
+    "cbct": "arrays/synthetic_003_cbct.npz",
+    "slic": "arrays/synthetic_003_slic.npz",
+    "cbct_days_from_ct": [
+      5.0,
+      7.0,
+      9.0,
+      12.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      5.0,
+      2.0,
+      2.0,
+      3.0
+    ]
+  },
+  {
+    "case_id": "synthetic_018",
+    "label": 0,
+    "ct": "arrays/synthetic_018_ct.npz",
+    "cbct": "arrays/synthetic_018_cbct.npz",
+    "slic": "arrays/synthetic_018_slic.npz",
+    "cbct_days_from_ct": [
+      4.0,
+      9.0,
+      11.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      4.0,
+      5.0,
+      2.0
+    ]
+  },
+  {
+    "case_id": "synthetic_016",
+    "label": 0,
+    "ct": "arrays/synthetic_016_ct.npz",
+    "cbct": "arrays/synthetic_016_cbct.npz",
+    "slic": "arrays/synthetic_016_slic.npz",
+    "cbct_days_from_ct": [
+      2.0,
+      8.0,
+      10.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      2.0,
+      6.0,
+      2.0
+    ]
+  },
+  {
+    "case_id": "synthetic_022",
+    "label": 0,
+    "ct": "arrays/synthetic_022_ct.npz",
+    "cbct": "arrays/synthetic_022_cbct.npz",
+    "slic": "arrays/synthetic_022_slic.npz",
+    "cbct_days_from_ct": [
+      3.0,
+      7.0,
+      12.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      3.0,
+      4.0,
+      5.0
+    ]
+  },
+  {
+    "case_id": "synthetic_002",
+    "label": 0,
+    "ct": "arrays/synthetic_002_ct.npz",
+    "cbct": "arrays/synthetic_002_cbct.npz",
+    "slic": "arrays/synthetic_002_slic.npz",
+    "cbct_days_from_ct": [
+      5.0,
+      10.0,
+      15.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      5.0,
+      5.0,
+      5.0
+    ]
+  },
+  {
+    "case_id": "synthetic_012",
+    "label": 0,
+    "ct": "arrays/synthetic_012_ct.npz",
+    "cbct": "arrays/synthetic_012_cbct.npz",
+    "slic": "arrays/synthetic_012_slic.npz",
+    "cbct_days_from_ct": [
+      6.0,
+      10.0,
+      12.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      6.0,
+      4.0,
+      2.0
+    ]
+  },
+  {
+    "case_id": "synthetic_005",
+    "label": 1,
+    "ct": "arrays/synthetic_005_ct.npz",
+    "cbct": "arrays/synthetic_005_cbct.npz",
+    "slic": "arrays/synthetic_005_slic.npz",
+    "cbct_days_from_ct": [
+      2.0,
+      4.0,
+      6.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      2.0,
+      2.0,
+      2.0
+    ]
+  },
+  {
+    "case_id": "synthetic_021",
+    "label": 1,
+    "ct": "arrays/synthetic_021_ct.npz",
+    "cbct": "arrays/synthetic_021_cbct.npz",
+    "slic": "arrays/synthetic_021_slic.npz",
+    "cbct_days_from_ct": [
+      5.0,
+      7.0,
+      9.0,
+      13.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      5.0,
+      2.0,
+      2.0,
+      4.0
+    ]
+  },
+  {
+    "case_id": "synthetic_013",
+    "label": 1,
+    "ct": "arrays/synthetic_013_ct.npz",
+    "cbct": "arrays/synthetic_013_cbct.npz",
+    "slic": "arrays/synthetic_013_slic.npz",
+    "cbct_days_from_ct": [
+      2.0,
+      4.0,
+      9.0,
+      12.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      2.0,
+      2.0,
+      5.0,
+      3.0
+    ]
+  },
+  {
+    "case_id": "synthetic_017",
+    "label": 1,
+    "ct": "arrays/synthetic_017_ct.npz",
+    "cbct": "arrays/synthetic_017_cbct.npz",
+    "slic": "arrays/synthetic_017_slic.npz",
+    "cbct_days_from_ct": [
+      2.0,
+      4.0,
+      7.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      2.0,
+      2.0,
+      3.0
+    ]
+  },
+  {
+    "case_id": "synthetic_019",
+    "label": 1,
+    "ct": "arrays/synthetic_019_ct.npz",
+    "cbct": "arrays/synthetic_019_cbct.npz",
+    "slic": "arrays/synthetic_019_slic.npz",
+    "cbct_days_from_ct": [
+      6.0,
+      10.0,
+      12.0,
+      14.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      6.0,
+      4.0,
+      2.0,
+      2.0
+    ]
+  },
+  {
+    "case_id": "synthetic_000",
+    "label": 0,
+    "ct": "arrays/synthetic_000_ct.npz",
+    "cbct": "arrays/synthetic_000_cbct.npz",
+    "slic": "arrays/synthetic_000_slic.npz",
+    "cbct_days_from_ct": [
+      5.0,
+      10.0,
+      16.0,
+      20.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      5.0,
+      5.0,
+      6.0,
+      4.0
+    ]
+  },
+  {
+    "case_id": "synthetic_004",
+    "label": 0,
+    "ct": "arrays/synthetic_004_ct.npz",
+    "cbct": "arrays/synthetic_004_cbct.npz",
+    "slic": "arrays/synthetic_004_slic.npz",
+    "cbct_days_from_ct": [
+      6.0,
+      10.0,
+      16.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      6.0,
+      4.0,
+      6.0
+    ]
+  },
+  {
+    "case_id": "synthetic_011",
+    "label": 1,
+    "ct": "arrays/synthetic_011_ct.npz",
+    "cbct": "arrays/synthetic_011_cbct.npz",
+    "slic": "arrays/synthetic_011_slic.npz",
+    "cbct_days_from_ct": [
+      3.0,
+      6.0,
+      10.0,
+      16.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      3.0,
+      3.0,
+      4.0,
+      6.0
+    ]
+  },
+  {
+    "case_id": "synthetic_009",
+    "label": 1,
+    "ct": "arrays/synthetic_009_ct.npz",
+    "cbct": "arrays/synthetic_009_cbct.npz",
+    "slic": "arrays/synthetic_009_slic.npz",
+    "cbct_days_from_ct": [
+      3.0,
+      5.0,
+      7.0,
+      10.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      3.0,
+      2.0,
+      2.0,
+      3.0
+    ]
+  }
+]

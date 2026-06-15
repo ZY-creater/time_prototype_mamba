@@ -1,0 +1,110 @@
+[
+  {
+    "case_id": "synthetic_001",
+    "label": 1,
+    "ct": "arrays/synthetic_001_ct.npz",
+    "cbct": "arrays/synthetic_001_cbct.npz",
+    "slic": "arrays/synthetic_001_slic.npz",
+    "cbct_days_from_ct": [
+      3.0,
+      9.0,
+      13.0,
+      16.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      3.0,
+      6.0,
+      4.0,
+      3.0
+    ]
+  },
+  {
+    "case_id": "synthetic_006",
+    "label": 0,
+    "ct": "arrays/synthetic_006_ct.npz",
+    "cbct": "arrays/synthetic_006_cbct.npz",
+    "slic": "arrays/synthetic_006_slic.npz",
+    "cbct_days_from_ct": [
+      4.0,
+      7.0,
+      9.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      4.0,
+      3.0,
+      2.0
+    ]
+  },
+  {
+    "case_id": "synthetic_023",
+    "label": 1,
+    "ct": "arrays/synthetic_023_ct.npz",
+    "cbct": "arrays/synthetic_023_cbct.npz",
+    "slic": "arrays/synthetic_023_slic.npz",
+    "cbct_days_from_ct": [
+      6.0,
+      10.0,
+      14.0,
+      16.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      6.0,
+      4.0,
+      4.0,
+      2.0
+    ]
+  },
+  {
+    "case_id": "synthetic_010",
+    "label": 0,
+    "ct": "arrays/synthetic_010_ct.npz",
+    "cbct": "arrays/synthetic_010_cbct.npz",
+    "slic": "arrays/synthetic_010_slic.npz",
+    "cbct_days_from_ct": [
+      2.0,
+      7.0,
+      11.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      2.0,
+      5.0,
+      4.0
+    ]
+  },
+  {
+    "case_id": "synthetic_015",
+    "label": 1,
+    "ct": "arrays/synthetic_015_ct.npz",
+    "cbct": "arrays/synthetic_015_cbct.npz",
+    "slic": "arrays/synthetic_015_slic.npz",
+    "cbct_days_from_ct": [
+      6.0,
+      12.0,
+      18.0,
+      24.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      6.0,
+      6.0,
+      6.0,
+      6.0
+    ]
+  },
+  {
+    "case_id": "synthetic_008",
+    "label": 0,
+    "ct": "arrays/synthetic_008_ct.npz",
+    "cbct": "arrays/synthetic_008_cbct.npz",
+    "slic": "arrays/synthetic_008_slic.npz",
+    "cbct_days_from_ct": [
+      2.0,
+      6.0,
+      9.0
+    ],
+    "cbct_days_from_prev_cbct": [
+      2.0,
+      4.0,
+      3.0
+    ]
+  }
+]

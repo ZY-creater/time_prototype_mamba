@@ -1,0 +1,55 @@
+project_root: .
+seed: 7
+
+data:
+  train_manifest: data/synthetic/train_manifest.json
+  val_manifest: data/synthetic/val_manifest.json
+  max_timepoints: 4
+  fixed_spatial_shape_zyx: [16, 24, 24]
+  spatial_size_multiple: 4
+
+model:
+  in_channels: 1
+  encoder_backend: monai_unet
+  unet_features: [4, 8]
+  unet_dropout: 0.0
+  num_prototypes: 8
+  pooling_mode: flatten_tokens
+  classifier_depth: 2
+  classifier_max_timepoints: 4
+  mlp_hidden: 64
+  mlp_dropout: 0.10
+  use_time_delta: true
+  time_embedding_mode: dual_clock
+  time_delta_scale: 30.0
+  time_residual_init: 0.05
+  mask_padding_before_temporal: true
+  temporal_backend: mamba
+  strict_mamba: true
+  mamba_use_fast_path: true
+
+training:
+  output_dir: outputs/synthetic_smoke
+  epochs: 5
+  batch_size: 2
+  num_workers: 0
+  lr: 0.001
+  weight_decay: 0.0001
+  grad_clip_norm: 1.0
+  amp: false
+  lambda_cluster: 0.00003
+  lambda_diversity: 0.0
+  lambda_contrast: 0.005
+  tau_contrast: 0.1
+  contrast_negative_class_weight: 0.5
+  contrast_positive_class_weight: 1.5
+  lambda_temporal_smooth: 0.0003
+  temporal_smooth_tau_days: 7.0
+  warmup_epochs: 2
+  fail_on_nonfinite: true
+
+reproducibility:
+  deterministic: true
+  cudnn_benchmark: false
+  cudnn_deterministic: true
+  allow_tf32: false
