@@ -239,13 +239,6 @@ prototype_tokens = out["temporal_tokens"]
 
 ---
 
-## Reproducibility Notes
-
-The utilities seed Python, NumPy, PyTorch CPU/CUDA, DataLoader workers, cuDNN flags, TF32 flags, and optional cuBLAS workspace configuration. Saved checkpoints and prediction files can be re-evaluated directly.
-
-GPU sequence kernels can still differ across hardware and dependency versions. For paper-grade experiments, keep the resolved config, manifests, metrics log, checkpoint hashes, hardware information, and repeated-run spread instead of relying on `seed` alone.
-
----
 
 ## Citation
 
